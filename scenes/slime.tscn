@@ -92,14 +92,18 @@ radius = 6.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_p2gj0"]
 radius = 39.012817
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_n6pvg"]
+radius = 12.0415945
+
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=1662720303]
+collision_layer = 17
 script = ExtResource("2_p2gj0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1138097902]
 position = Vector2(0, -7)
 sprite_frames = SubResource("SpriteFrames_fd6lc")
 animation = &"walk_side"
-frame_progress = 0.8179639
+frame_progress = 0.291692
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=216382322]
 position = Vector2(0, -5)
@@ -112,7 +116,20 @@ collision_mask = 512
 position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_p2gj0")
 
+[node name="SlimeAttackRange" type="Area2D" parent="." unique_id=616551282]
+collision_mask = 512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SlimeAttackRange" unique_id=2123635792]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_n6pvg")
+
+[node name="IFrame" type="Timer" parent="." unique_id=576321055]
+wait_time = 0.6
+
 [connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_entered" from="detection_area" to="CollisionShape2D" method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]
 [connection signal="body_exited" from="detection_area" to="CollisionShape2D" method="_on_detection_area_body_exited"]
+[connection signal="body_entered" from="SlimeAttackRange" to="." method="_on_slime_attack_range_body_entered"]
+[connection signal="body_exited" from="SlimeAttackRange" to="." method="_on_slime_attack_range_body_exited"]
+[connection signal="timeout" from="IFrame" to="." method="_on_i_frame_timeout"]

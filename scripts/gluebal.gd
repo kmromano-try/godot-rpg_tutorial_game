@@ -1,5 +1,7 @@
 extends Node
 
+var playerCurrentAttack = false
+
 var currentScene = "world"
 var transitionScene = false
 var gameFirstLoading = true

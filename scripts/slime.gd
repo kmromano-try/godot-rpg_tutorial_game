@@ -3,7 +3,7 @@ extends CharacterBody2D
 var speed = 50
 var player_chase = false
 var player = null
-
+#tite
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 func _ready() -> void:
